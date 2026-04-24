@@ -1,0 +1,645 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #074173 0%, #0a5d8f 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  padding: 20px;
+  position: relative;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 520px; /* Increased from 440px to 520px */
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-card {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 48px 48px 40px; /* Increased horizontal padding */
+  box-shadow: 0 20px 60px rgba(7, 65, 115, 0.15);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.login-logo {
+  width: 280px;
+  height: 80px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 4px 8px rgba(7, 65, 115, 0.1));
+}
+
+.login-header h1 {
+  font-size: 32px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #074173 0%, #0a5d8f 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 2px;
+  letter-spacing: -0.3px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #64748b;
+  font-weight: 400;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+}
+
+/* Input Fields */
+.input-group {
+  position: relative;
+  margin-bottom: 36px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 20px 0 8px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1e293b;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.input-group label {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #64748b;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.input-group.filled label,
+.input-group input:focus ~ label {
+  transform: translateY(-28px) scale(0.85);
+  color: #074173;
+  font-weight: 700;
+}
+
+.input-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.input-border::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #074173, #0a5d8f, #074173);
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-group input:focus ~ .input-border::before {
+  transform: translateX(0);
+}
+
+/* Error state for input group */
+.input-group.error .input-border {
+  background: #ef4444;
+}
+
+.input-group.error .input-border::before {
+  background: linear-gradient(90deg, #ef4444, #dc2626, #ef4444);
+}
+
+.input-group.error label {
+  color: #ef4444;
+}
+
+/* Professional Error Message Below Input Field */
+.field-error {
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ef4444;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Password Toggle Button */
+.password-toggle {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+  outline: none;
+}
+
+.password-toggle:focus {
+  outline: none;
+}
+
+.password-toggle:hover {
+  color: #074173;
+  background: rgba(7, 65, 115, 0.05);
+}
+
+/* General Error Message (for form-level errors) */
+.error-message {
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 700;
+  margin: -24px 0 20px 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+  background: transparent;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Form Options */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 28px 0 32px 0;
+}
+
+/* Custom Checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #475569;
+  user-select: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.checkbox-container:hover {
+  color: #074173;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border: 2px solid #cbd5e1;
+  border-radius: 5px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: #074173;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background: #074173;
+  border-color: #074173;
+  animation: checkPop 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.forgot-link {
+  font-size: 14px;
+  color: #074173;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.forgot-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #074173;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.forgot-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Login Button */
+.login-button {
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #074173, #0a5d8f);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(7, 65, 115, 0.25);
+  outline: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.login-button:focus {
+  outline: none;
+}
+
+.login-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.login-button:active::before {
+  width: 200px;
+  height: 200px;
+}
+
+.login-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0a5d8f, #074173);
+}
+
+.login-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Material Loader */
+.material-loader {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Signup Prompt */
+.signup-prompt {
+  text-align: center;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #64748b;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.signup-prompt a {
+  color: #074173;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.signup-prompt a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #074173;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.signup-prompt a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Select / Dropdown Field Styles */
+.select-group {
+  cursor: pointer;
+}
+
+.select-group select {
+  width: 100%;
+  padding: 20px 0 8px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1e293b;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+  transition: all 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.select-group select option {
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1e293b;
+  background: #ffffff;
+}
+
+.select-group .select-arrow {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  pointer-events: none;
+  color: #94a3b8;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.select-group select:focus ~ .select-arrow {
+  transform: rotate(180deg);
+  color: #074173;
+}
+
+.select-group.filled .select-arrow {
+  transform: rotate(0deg);
+}
+
+.select-group label {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #64748b;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.select-group.filled label,
+.select-group select:focus ~ label {
+  transform: translateY(-28px) scale(0.85);
+  color: #074173;
+  font-weight: 700;
+}
+
+.select-group .input-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.select-group .input-border::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #074173, #0a5d8f, #074173);
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.select-group select:focus ~ .input-border::before {
+  transform: translateX(0);
+}
+
+.select-group select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes checkPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Remove all focus outlines/borders */
+input:focus,
+button:focus,
+textarea:focus,
+select:focus,
+a:focus,
+[tabindex]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .login-container {
+    max-width: 480px;
+  }
+  
+  .login-card {
+    padding: 36px 32px 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .login-container {
+    max-width: 440px;
+  }
+  
+  .login-card {
+    padding: 36px 24px 32px;
+  }
+  
+  .login-header h1 {
+    font-size: 28px;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .login-logo {
+    width: 100px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+  }
+  
+  .input-group label,
+  .select-group label {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .login-card {
+    padding: 28px 20px 24px;
+  }
+  
+  .login-header h1 {
+    font-size: 24px;
+  }
+  
+  .input-group input,
+  .select-group select {
+    font-size: 14px;
+  }
+  
+  .login-logo {
+    width: 90px;
+  }
+  
+  .input-group label,
+  .select-group label {
+    font-size: 15px;
+  }
+}
+
+
