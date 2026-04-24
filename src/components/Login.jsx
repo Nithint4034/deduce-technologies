@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import logo from '../assets/images/DT_Logo.png';
 import './Login.css';
 
-function Login() {
+function Login({ onSignUp }) {
   const [formData, setFormData] = useState({
     dtNumber: 'DT-',
     password: '',
-    role: 'Production'
+    role: ''
   });
   const [focused, setFocused] = useState({
     dtNumber: false,
@@ -166,6 +166,7 @@ function Login() {
                 onBlur={() => handleBlur('role')}
                 required
               >
+                <option value="">Select Role</option>
                 <option value="Admin">Admin</option>
                 <option value="Production">Production</option>
                 <option value="Travelshoot">Travelshoot</option>
@@ -207,7 +208,7 @@ function Login() {
             </button>
 
             <div className="signup-prompt">
-              Don't have an account? <a href="#">Sign up</a>
+              Don't have an account? <button type="button" className="link-button" onClick={onSignUp}>Sign up</button>
             </div>
           </form>
         </div>
