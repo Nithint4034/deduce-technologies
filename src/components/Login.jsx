@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../assets/images/DT_Logo.png';
 import './Login.css';
 
-function Login({ onSignUp }) {
+function Login({ onSignUp, onLogin }) {
   const [formData, setFormData] = useState({
     dtNumber: 'DT-',
     password: '',
@@ -94,6 +94,8 @@ function Login({ onSignUp }) {
         role: formData.role,
         rememberMe 
       });
+      // Simulate successful login
+      onLogin(formData.role);
       setIsLoading(false);
     }, 1500);
   };
